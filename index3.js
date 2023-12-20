@@ -23,6 +23,7 @@ const a_text = document.getElementById("a_text");
 const b_text = document.getElementById("b_text");
 const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
+const displayScreen = document.getElementById("display");
 
 let questionNumber = 0;
 
@@ -38,6 +39,42 @@ const questionLoop = () => {
   if (questionNumber < iqQuestions.length) {
     display();
   }
+};
+
+// const answer = () => {
+//   const selectedInput = document.querySelector("input[name='answer']:checked");
+
+//   if (selectedInput) {
+//     const selectedValue = selectedInput.value;
+//     const correctAnswer = iqQuestions[questionNumber].answer;
+
+//     if (selectedValue === correctAnswer) {
+//       console.log("You're right!");
+//     } else {
+//       console.log("Sorry, wrong answer.");
+//     }
+//   } else {
+//     console.log("Please select an answer.");
+//   }
+// };
+const answer = () => {
+  const selectedInput = document.querySelector(
+    "input[name='answer']:checked + label"
+  );
+
+  if (selectedInput) {
+    const correctAnswer = iqQuestions[questionNumber].answer;
+
+    if (selectedInput.textContent === correctAnswer) {
+      displayScreen.innerHTML = `You are correct. ${correctAnswer}`;
+    } else {
+      displayScreen.innerHTML = `Sorry, wrong answer. ${correctAnswer} is correct`;
+    }
+  } else {
+    console.log("Please select an answer.");
+  }
+  const selectedInput2 = selectedInput.reset();
+  selectedInput = selectedInput2;
 };
 
 display();
